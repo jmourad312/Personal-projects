@@ -29,9 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 // add create index to work with passport 
-mongoose.connect(process.env.DB, {
+mongoose.connect("mongodb://localhost:27017/userDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -184,11 +183,8 @@ app.get("/logout", function (req, res) {
 
 
 
-let port = process.env.PORT;
-if (port == null || port = "") {
-    port = 3000
-}
 
-app.listen(port, function () {
-    console.log("Connected successfully to port");
+
+app.listen(3000, function () {
+    console.log("Connected successfully to port 3000");
 })
