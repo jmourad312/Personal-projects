@@ -20,6 +20,18 @@ const emojipedia = [
     name: "Fire",
     meaning:
       "Could be described as angry or just to illustrate a fire or explosion"
+  },
+  {
+    id:4,
+    emoji: "🚹",
+    name: "Mens symbol",
+    meaning: "refer to male gender symbol" 
+  },
+  {
+    id:5,
+    emoji: "🐍"  ,
+    name: "Snake symbol",
+    meaning: "refer to the snake animal or someone cunning"
   }
 ];
 

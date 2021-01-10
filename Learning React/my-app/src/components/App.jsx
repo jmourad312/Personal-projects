@@ -9,7 +9,6 @@ function createEntry(emojiTerm) {
     emoji={emojiTerm.emoji}
     name={emojiTerm.name}
     meaning={emojiTerm.meaning}
-
   />
   );
 }
