@@ -1,5 +1,4 @@
 import React from "react";
-import Input from "./Input";
 
 function Form(props) {
   return (
