@@ -1,22 +1,18 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import notes from "../notes";
+import Login from './Login'
+
+var isLoggedIn = false;
+
+const currentTime = new Date(2019, 11, 1, 19).getHours();
+
+console.log(currentTime);
 
 function App() {
   return (
-    <div>
-      <Header />
-      {notes.map((noteItem) => (
-        <Note
-          key={noteItem.key}
-          title={noteItem.title}
-          content={noteItem.content}
-        />
-      ))}
-      <Footer />
-    </div>
+    <div className="container">{
+        isLoggedIn ? <h1>Hello</h1> : <Login /> 
+        // currentTime > 12 && <h1>Why are you still working?</h1>
+      }</div>
   );
 }
 
