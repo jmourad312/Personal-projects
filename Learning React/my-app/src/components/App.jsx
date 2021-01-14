@@ -1,38 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 function App() {
-  const [headingText, setHeadingText] = useState("Hello");
-  // const [color, setColor] = useState("white")
-  const [color, setColor] = useState(false)
+  const [name, setName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [headingText, setHeadingText] = useState("")
 
-
-  function handleClick() {
-    setHeadingText("Submitted");
-  }
-  // function mouseOver() {
-  //   setColor("black");
-  // }
-  // function mouseOut() {
-  //   setColor("white");
-    
-  // }
-  function mouseOver() {
-    setColor(true);
-  }
-  function mouseOut() {
-    setColor(false);
-    
+  function handleChange(event) {
+    console.log(event.target.value);
+    // console.log(event.target.placeholder);
+    // console.log(event.target.type);
+    setName(event.target.value);
+    setIsSubmitted(false);
   }
 
+  function handleSubmit() {
+    // setIsSubmitted(true);
+    setHeadingText(name)
+    console.log("clicked");
+  }
 
   return (
     <div className="container">
-      <h1>{headingText}</h1>
-      <input type="text" placeholder="What's your name?" />
-      {/* <button style={{backgroundColor:color}} onClick={handleClick} onMouseOver={mouseOver} onMouseOut={mouseOut}>Submit</button> */}
-      <button style={{backgroundColor: color ? "black" : "white"}} onClick={handleClick} onMouseOver={mouseOver} onMouseOut={mouseOut}>Submit</button>
-
-
+      {/* <h1>Hello {isSubmitted && name}</h1> */}
+      <h1>Hello {headingText}</h1>
+      <input
+        onChange={handleChange}
+        type="text"
+        placeholder="What's your name?"
+        value={name}
+      />
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
