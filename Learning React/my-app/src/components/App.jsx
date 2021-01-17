@@ -10,25 +10,32 @@ function App() {
   function handleChange(event) {
     const { value, name } = event.target;
     setContact((previousContact) => {
-      if (name === "fName") {
-        return {
-          fName: value,
-          lName: previousContact.lName,
-          email: previousContact.email
-        };
-      } else if (name === "lName"){
-        return {
-          fName: previousContact.fName,
-          lName: value,
-          email: previousContact.email
-        };
-      } else if (name === "email") {
-        return {
-          fName: previousContact.fName,
-          lName: previousContact.lName,
-          email: value
-        };
+      return {
+        ...previousContact,
+        [name] : value
       }
+      
+      // old code before using spread operator
+
+      // if (name === "fName") {
+      //   return {
+      //     fName: value,
+      //     lName: previousContact.lName,
+      //     email: previousContact.email
+      //   };
+      // } else if (name === "lName"){
+      //   return {
+      //     fName: previousContact.fName,
+      //     lName: value,
+      //     email: previousContact.email
+      //   };
+      // } else if (name === "email") {
+      //   return {
+      //     fName: previousContact.fName,
+      //     lName: previousContact.lName,
+      //     email: value
+      //   };
+      // }
     });
   }
 
