@@ -1,80 +1,62 @@
-import React, {useState} from "react";
-
+import React, { useState } from "react";
 
 function App() {
-
-  const [fullName, setFullName] = useState({
-    firstName: "",
-    lastName: "",
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: "",
   });
-  function handleChange (event) {
-    // const newValue = event.target.value;
-    // const inputName = event.target.name;
-    const {value, name} = event.target;
 
-    // console.log(value);
-    // console.log(name);
-
-    setFullName(previousValue=>{
-      console.log(previousValue);
-      if (name === "firstName") {
+  function handleChange(event) {
+    const { value, name } = event.target;
+    setContact((previousContact) => {
+      if (name === "fName") {
         return {
-          firstName : value,
-          lastName : previousValue.lastName
-        }
-      } else if (name === "lastName"){
+          fName: value,
+          lName: previousContact.lName,
+          email: previousContact.email
+        };
+      } else if (name === "lName"){
         return {
-          firstName : previousValue.firstName,
-          lastName : value
-        }
+          fName: previousContact.fName,
+          lName: value,
+          email: previousContact.email
+        };
+      } else if (name === "email") {
+        return {
+          fName: previousContact.fName,
+          lName: previousContact.lName,
+          email: value
+        };
       }
-    })
-
+    });
   }
-
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [headingText, setHeadingText] = useState("");
-
-  // function handleChangeFirst (event) {
-  //   setFirstName(event.target.value);
-  // }
-  // function handleChangeLast (event) {
-  //   setLastName(event.target.value);
-  // }
-  // function handleClick (event) {
-  //   setHeadingText(firstName + " " + lastName);
-  //   event.preventDefault();
-  // }
-
 
   return (
     <div className="container">
-      {/* <h1>Hello {headingText}</h1> */}
-      {/* <h1>Hello {firstName} {lastName}</h1> */}
-      <h1>Hello {fullName.firstName} {fullName.lastName}</h1>
-
-
+      <h1>
+        Hello {contact.fName} {contact.lName}
+      </h1>
+      <p>{contact.email}</p>
       <form>
-        <input 
-        name="firstName" 
-        onChange={handleChange}
-        // onChange={handleChangeFirst} 
-        placeholder="First Name" 
-        value={fullName.firstName}  
+        <input
+          name="fName"
+          placeholder="First Name"
+          value={contact.fName}
+          onChange={handleChange}
         />
-        
         <input 
-        name="lastName" 
+        name="lName" 
+        placeholder="Last Name"
+        value={contact.lName}
         onChange={handleChange}
-        // onChange={handleChangeLast}
-        placeholder="Last Name" 
-        value={fullName.lastName}  
         />
-
-        <button 
-        // onClick={handleClick}
-        >Submit</button>
+        <input name="email"
+        placeholder="Email"
+        value={contact.email}
+        onChange={handleChange}
+       />
+        <button>Submit</button>
       </form>
     </div>
   );
