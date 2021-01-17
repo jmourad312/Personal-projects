@@ -1,35 +1,81 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
+
 
 function App() {
-  const [name, setName] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [headingText, setHeadingText] = useState("")
 
-  function handleChange(event) {
-    console.log(event.target.value);
-    // console.log(event.target.placeholder);
-    // console.log(event.target.type);
-    setName(event.target.value);
-    setIsSubmitted(false);
+  const [fullName, setFullName] = useState({
+    firstName: "",
+    lastName: "",
+  });
+  function handleChange (event) {
+    // const newValue = event.target.value;
+    // const inputName = event.target.name;
+    const {value, name} = event.target;
+
+    // console.log(value);
+    // console.log(name);
+
+    setFullName(previousValue=>{
+      console.log(previousValue);
+      if (name === "firstName") {
+        return {
+          firstName : value,
+          lastName : previousValue.lastName
+        }
+      } else if (name === "lastName"){
+        return {
+          firstName : previousValue.firstName,
+          lastName : value
+        }
+      }
+    })
+
   }
 
-  function handleSubmit() {
-    // setIsSubmitted(true);
-    setHeadingText(name)
-    console.log("clicked");
-  }
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [headingText, setHeadingText] = useState("");
+
+  // function handleChangeFirst (event) {
+  //   setFirstName(event.target.value);
+  // }
+  // function handleChangeLast (event) {
+  //   setLastName(event.target.value);
+  // }
+  // function handleClick (event) {
+  //   setHeadingText(firstName + " " + lastName);
+  //   event.preventDefault();
+  // }
+
 
   return (
     <div className="container">
-      {/* <h1>Hello {isSubmitted && name}</h1> */}
-      <h1>Hello {headingText}</h1>
-      <input
+      {/* <h1>Hello {headingText}</h1> */}
+      {/* <h1>Hello {firstName} {lastName}</h1> */}
+      <h1>Hello {fullName.firstName} {fullName.lastName}</h1>
+
+
+      <form>
+        <input 
+        name="firstName" 
         onChange={handleChange}
-        type="text"
-        placeholder="What's your name?"
-        value={name}
-      />
-      <button onClick={handleSubmit}>Submit</button>
+        // onChange={handleChangeFirst} 
+        placeholder="First Name" 
+        value={fullName.firstName}  
+        />
+        
+        <input 
+        name="lastName" 
+        onChange={handleChange}
+        // onChange={handleChangeLast}
+        placeholder="Last Name" 
+        value={fullName.lastName}  
+        />
+
+        <button 
+        // onClick={handleClick}
+        >Submit</button>
+      </form>
     </div>
   );
 }
