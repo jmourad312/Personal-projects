@@ -8,7 +8,7 @@ const Genres = ({
   selectedItem,
 }) => {
   return (
-    <ul className="list-group mt-5">
+    <ul className="list-group">
       {genres.map((genre) => (
         <li
           onClick={() => onItemSelect(genre)}
