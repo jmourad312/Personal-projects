@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
 logger.init();
-
+console.log("SUPERMAN",process.env);
 ReactDOM.render(
   <BrowserRouter>
     <App />
