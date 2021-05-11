@@ -18,6 +18,15 @@ class DirectMessages extends Component {
       this.addListners(this.state.user.uid);
     }
   }
+  componentWillUnmount() {
+    this.removeListners();
+  }
+  removeListners=()=>{
+    this.state.usersRef.off();
+    this.state.presenceRef.off();
+    this.state.connectedRef.off();
+  }
+
   addListners = (currentUserUid) => {
     let loadedUsers = [];
     this.state.usersRef.on("child_added", (snap) => {
@@ -82,11 +91,11 @@ class DirectMessages extends Component {
       : `${currentUserId}/${userId}`;
   };
 
-  setActiveChannel = userId=>{
-      this.setState({activeChannel:userId})
-  }
+  setActiveChannel = (userId) => {
+    this.setState({ activeChannel: userId });
+  };
   render() {
-    const { users,activeChannel } = this.state;
+    const { users, activeChannel } = this.state;
     return (
       <Menu.Menu className="menu">
         <Menu.Item>

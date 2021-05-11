@@ -20,6 +20,7 @@ class Channels extends Component {
     channelDetails: "",
     channelsRef: firebase.database().ref("channels"),
     messagesRef: firebase.database().ref("messages"),
+    typingRef: firebase.database().ref("typing"),
     notifications: [],
     modal: false,
     firstLoad: true,
@@ -81,6 +82,9 @@ class Channels extends Component {
 
   removeListeners = () => {
     this.state.channelsRef.off();
+    this.state.channels.forEach((channel) => {
+      this.state.messagesRef.child(channel.id).off();
+    });
   };
 
   setFirstChannel = () => {
@@ -89,12 +93,16 @@ class Channels extends Component {
     if (firstLoad && channels.length > 0) {
       this.props.setCurrentChannel(firstChannel);
       this.setActiveChannel(firstChannel);
-      this.setState({channel:firstChannel })
+      this.setState({ channel: firstChannel });
     }
     this.setState({ firstLoad: false });
   };
   changeChannel = (channel) => {
     this.setActiveChannel(channel);
+    this.state.typingRef
+      .child(this.state.channel.id)
+      .child(this.state.user.uid)
+      .remove();
     this.clearNotifications();
     this.props.setCurrentChannel(channel);
     this.props.setPrivateChannel(false);
@@ -106,9 +114,8 @@ class Channels extends Component {
     );
     if (index !== -1) {
       let updatedNotifications = [...this.state.notifications];
-      updatedNotifications[index].total = this.state.notifications[
-        index
-      ].lastKnownTotal;
+      updatedNotifications[index].total =
+        this.state.notifications[index].lastKnownTotal;
       updatedNotifications[index].count = 0;
       this.setState({ notification: updatedNotifications });
     }
