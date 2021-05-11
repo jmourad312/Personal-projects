@@ -1,13 +1,14 @@
 import http from "./httpService";
-import {apiEndpoint} from "../config.json";
+// import {apiEndpoint} from "../config.json";
+const apiEndpoint = "/auth";
 
 
 function movieUrl (id) {
-  return `${apiEndpoint.movies}/${id}`
+  return `${apiEndpoint}/${id}`
 }
 
 export function getMovies() {
-  return http.get(apiEndpoint.movies);
+  return http.get(apiEndpoint);
 }
 export function getMovie(movieId) {
   return http.get(movieUrl(movieId));
@@ -19,7 +20,7 @@ export function saveMovie (movie) {
     delete body._id
     return http.put(movieUrl(movie._id), body);
   }
-  return http.post(apiEndpoint.movies,movie)
+  return http.post(apiEndpoint,movie)
 }
 
 export function deleteMovie(movieId) {
