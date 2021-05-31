@@ -1,10 +1,14 @@
-import { compose,pipe } from 'lodash/fp';
+const numbers = [1, 2, 3];
 
-let input = "   JavaScript    ";
-const trim = str => str.trim();
-const wrap = type => str => `<${type}>${str}</${type}>`
-const toLowerCase = str => str.toLowerCase()
+// adding
+const index = numbers.indexOf(2);
+const added = [...numbers.slice(0, index), 4, ...numbers.slice(index)];
+console.log(added);
 
-const transform = pipe(trim,toLowerCase,wrap("div"));
+//removing
+const removed = numbers.filter((n) => n !== 2);
+console.log(removed);
 
-console.log(transform(input));
+// updating
+const updated = numbers.map((n) => (n === 2 ? 20 : n));
+console.log(updated);
