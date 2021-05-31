@@ -1,10 +1,24 @@
-import { Map } from 'immutable';
+import store from "./store";
 
-let book = Map({title: "Harry Potter"});
+// subscribe method returns a function to unsubscribe in case the user navigates away
+const unsubscribe = store.subscribe(() => {
+  console.log("Store Changed!", store.getState());
+});
 
-function publish (book) {
-    return book.set("isPublished" ,true);
-}
+store.dispatch({
+  type: "bugAdded",
+  payload: {
+    description: "Bug1",
+  },
+});
 
-book =publish(book);
-console.log(book.toJS());
+unsubscribe()
+
+store.dispatch({
+  type: "bugRemoved",
+  payload: {
+    id: 1,
+  },
+});
+
+console.log(store.getState());
