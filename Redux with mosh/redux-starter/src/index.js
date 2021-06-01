@@ -7,8 +7,11 @@ import customStore from './customStore'
 //   console.log("Store Changed!", store.getState());
 // });
 // unsubscribe()
-console.log(customStore);
-console.log(store);
+
+customStore.subscribe(()=>{
+    console.log("Custom Store Changed!");
+})
+
 customStore.dispatch(actions.bugAdded("custom bug"))
 
 
