@@ -1,24 +1,12 @@
-import store from "./store";
-import * as actions from './actions'
-import customStore from './customStore'
+import configureStore from "./store/configureStore";
+import * as actions from './store/bugs'
 
-// subscribe method returns a function to unsubscribe in case the user navigates away
-// const unsubscribe = store.subscribe(() => {
-//   console.log("Store Changed!", store.getState());
-// });
-// unsubscribe()
+const store = configureStore();
 
-customStore.subscribe(()=>{
-    console.log("Custom Store Changed!");
-})
+store.dispatch(actions.bugAdded("bug 1"));
+store.dispatch(actions.bugAdded("bug 2"));
+store.dispatch(actions.bugAdded("bug 3"));
+store.dispatch(actions.bugResolved(1));
+// store.dispatch(actions.bugRemoved(2));
+console.log(store.getState());
 
-customStore.dispatch(actions.bugAdded("custom bug"))
-
-
-// store.dispatch(actions.bugAdded("bug 1"));
-// store.dispatch(actions.bugRemoved(1));
-// store.dispatch(actions.bugResolved(1));
-// console.log(store.getState());
-
-
-console.log(customStore.getState());
