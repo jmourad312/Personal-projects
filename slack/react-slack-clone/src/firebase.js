@@ -1,6 +1,10 @@
-import '../node_modules/@firebase/auth'
-import '../node_modules/@firebase/database'
-import '../node_modules/@firebase/storage'
+// import '../node_modules/@firebase/auth'
+// import '../node_modules/@firebase/database'
+// import '../node_modules/@firebase/storage'
+import 'firebase/auth'
+import 'firebase/database'
+import 'firebase/storage'
+// import 'firebase/app'
 import firebase from '../node_modules/@firebase/app'
 
 const firebaseConfig = {
