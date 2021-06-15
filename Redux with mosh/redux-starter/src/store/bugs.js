@@ -5,7 +5,11 @@ let lastId = 0;
 
 const slice = createSlice({
   name: "bugs",
-  initialState: [],
+  initialState: {
+    list:[],
+    loading:false,
+    lastFetch: null
+  },
   reducers: {
     //actions => action handlers
     bugAssignedToUser: (bugs, action) => {
